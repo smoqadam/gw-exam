@@ -88,17 +88,43 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
           {error && <p className="text-sm text-red-500">{error}</p>}
           {entry && !loading && (
             <div className="space-y-3">
-              <div>
-                <div className="text-lg font-bold">{entry.word}</div>
-                <div className="text-sm text-gray-500">
-                  {entry.ipa && `${entry.ipa} · `}{entry.part_of_speech}
-                  {entry.article && ` · ${entry.article}`}
-                </div>
-                {entry.lemma && (
-                  <div className="text-xs text-gray-400 mt-1">
-                    Lemma: <em>{entry.lemma}</em>
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="text-lg font-bold">{entry.word}</div>
+                  <div className="text-sm text-gray-500">
+                    {entry.ipa && `${entry.ipa} · `}{entry.part_of_speech}
+                    {entry.article && ` · ${entry.article}`}
                   </div>
-                )}
+                  {entry.lemma && (
+                    <div className="text-xs text-gray-400 mt-1">
+                      Lemma: <em>{entry.lemma}</em>
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={() => {
+                    if (!savedWords.includes(entry.word)) {
+                      setSavedWords([...savedWords, entry.word])
+                      setWordEntries({ ...wordEntries, [entry.word]: entry })
+                    }
+                  }}
+                  className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-colors ${
+                    savedWords.includes(entry.word)
+                      ? "bg-green-50 text-green-600 border-green-200"
+                      : "text-gray-400 border-gray-200 hover:border-blue-300 hover:text-blue-500"
+                  }`}
+                  aria-label={savedWords.includes(entry.word) ? "Saved" : "Save to vocab"}
+                >
+                  {savedWords.includes(entry.word) ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  )}
+                </button>
               </div>
 
               <div>
@@ -156,25 +182,6 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
                 </div>
               )}
 
-              <button
-                onClick={() => {
-                  if (!savedWords.includes(entry.word)) {
-                    setSavedWords([...savedWords, entry.word])
-                    setWordEntries({ ...wordEntries, [entry.word]: entry })
-                  }
-                }}
-                disabled={savedWords.includes(entry.word)}
-                className={`w-full py-2 rounded-lg text-sm flex items-center justify-center gap-2 ${
-                  savedWords.includes(entry.word)
-                    ? "bg-green-50 text-green-600 border border-green-200"
-                    : "bg-blue-500 text-white hover:bg-blue-600"
-                }`}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-                </svg>
-                {savedWords.includes(entry.word) ? "Saved to vocab" : "Save to my vocab"}
-              </button>
             </div>
           )}
         </div>
