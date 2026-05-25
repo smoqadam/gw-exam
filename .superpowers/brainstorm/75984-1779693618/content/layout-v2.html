@@ -1,0 +1,91 @@
+<h2>Overall App Layout &amp; Floating Dictionary</h2>
+<p class="subtitle">Every page has this structure. The dictionary is always accessible.</p>
+
+<div class="mockup" style="max-width: 800px; margin: 0 auto;">
+  <div class="mockup-header">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 8px;">
+      <span style="font-weight: bold; display: flex; align-items: center; gap: 6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        Dexam2
+      </span>
+      <span style="font-size: 0.85em; opacity: 0.7;">B1 Exam Prep</span>
+    </div>
+  </div>
+  <div class="mockup-body" style="padding: 0;">
+    <div style="display: flex; min-height: 400px;">
+      <div style="width: 200px; min-height: 400px; display: flex; flex-direction: column; gap: 4px; padding: 12px; border-right: 1px solid var(--border);">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 6px; background: var(--accent); color: white; font-size: 0.85em;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Exams
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 6px; font-size: 0.85em; opacity: 0.6;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Vocab Review
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 6px; font-size: 0.85em; opacity: 0.6;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          My Notes
+        </div>
+        <div style="flex: 1;"></div>
+      </div>
+      <div style="flex: 1; padding: 24px;">
+        <div class="placeholder" style="height: 60px; margin-bottom: 16px;">Exam cards list here</div>
+        <div class="placeholder" style="height: 80px;">Main content area</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Floating Dictionary Gadget</h3>
+  <p class="subtitle">Global — available on every page, every screen</p>
+
+  <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 200px;">
+      <div style="font-size: 0.8em; font-weight: 600; margin-bottom: 8px; opacity: 0.6;">CLOSED STATE</div>
+      <div style="position: relative; height: 180px; border: 1px dashed var(--border); border-radius: 8px;">
+        <div style="position: absolute; bottom: 16px; right: 16px; width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 2; min-width: 300px;">
+      <div style="font-size: 0.8em; font-weight: 600; margin-bottom: 8px; opacity: 0.6;">OPEN STATE (drawer)</div>
+      <div style="border: 1px dashed var(--border); border-radius: 8px; display: flex; min-height: 300px;">
+        <div style="flex: 1; padding: 16px;">
+          <div class="placeholder" style="height: 100%;">
+            Page content<br>shown dimmed behind drawer
+          </div>
+        </div>
+        <div style="width: 320px; border-left: 1px solid var(--border); padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong>Dictionary</strong>
+            <span style="cursor: pointer; opacity: 0.5;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </span>
+          </div>
+          <div style="position: relative;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); opacity: 0.4;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input class="mock-input" placeholder="Type a German word..." style="width: 100%; padding-left: 28px;">
+          </div>
+          <div style="padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+            <div style="font-size: 1.1em; font-weight: bold;">verbrachte</div>
+            <div style="font-size: 0.85em; opacity: 0.6;">/fɛɐ̯ˈbʁaχtə/ · verb</div>
+            <div style="margin-top: 4px; font-size: 0.9em;">spent</div>
+            <div style="margin-top: 8px; font-size: 0.85em; color: var(--text-secondary);"><em>Lemma: verbringen — to spend (time)</em></div>
+            <div style="margin-top: 4px; font-size: 0.85em; color: var(--text-secondary);">3. Person Singular Präteritum von verbringen, Hilfsverb haben</div>
+            <button class="mock-button" style="margin-top: 8px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              Save to my vocab
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>How clicking words works</h3>
+  <p>Any German word in a text, question, or answer option is <strong>clickable</strong>. Click it → the dictionary drawer opens with that word auto-loaded. No right-click, no selection, no extra steps. Quick dismiss, quick look up.</p>
+</div>
