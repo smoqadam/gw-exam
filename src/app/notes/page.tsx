@@ -42,22 +42,22 @@ export default function NotesPage() {
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-bold mb-1">My Notes</h1>
-      <p className="text-sm text-gray-500 mb-6">{notes.length} notes saved</p>
+      <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "var(--font-serif, serif)" }}>My Notes</h1>
+      <p className="text-sm text-text-secondary mb-6">{notes.length} notes saved</p>
 
       {notes.length === 0 ? (
-        <div className="text-center py-12 text-gray-400 text-sm">
+        <div className="text-center py-12 text-text-secondary text-sm">
           No notes yet. Use the notes area in any exercise to save notes.
         </div>
       ) : (
         <div className="space-y-3">
           {notes.map(n => (
-            <div key={n.key} className="border rounded-xl p-4 bg-white">
+            <div key={n.key} className="border border-border rounded-xl p-4 bg-surface">
               <div className="flex items-start justify-between gap-3 mb-2">
-                <div className="text-xs text-gray-400 uppercase tracking-wide font-medium">
+                <div className="text-xs text-text-secondary uppercase tracking-wider font-medium">
                   {n.examId} · {n.sectionKey}{n.questionId ? ` · Q${n.questionId}` : ""}
                 </div>
-                <button onClick={() => deleteNote(n.key)} className="text-gray-300 hover:text-red-500 shrink-0">
+                <button onClick={() => deleteNote(n.key)} className="text-border hover:text-error shrink-0">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
                   </svg>

@@ -58,10 +58,10 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
   return (
     <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true" aria-label="German dictionary">
       <div className="flex-1 bg-black/30" onClick={onClose} />
-      <div className="w-80 bg-white shadow-xl flex flex-col border-l overflow-y-auto">
-        <div className="flex items-center justify-between p-3 border-b">
+      <div className="w-80 bg-surface shadow-xl flex flex-col border-l border-border overflow-y-auto">
+        <div className="flex items-center justify-between p-3 border-b border-border">
           <h2 className="font-semibold text-sm">Dictionary</h2>
-          <button onClick={onClose} aria-label="Close" className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} aria-label="Close" className="text-text-secondary hover:text-text-primary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
@@ -70,11 +70,11 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
 
         <div className="p-3 border-b">
           <div className="relative">
-            <svg className="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg className="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
             <input
-              className="w-full pl-8 pr-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-8 pr-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent bg-surface"
               placeholder="Type a German word..."
               value={query}
               onChange={e => setQuery(e.target.value)}
@@ -84,19 +84,19 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
         </div>
 
         <div className="flex-1 p-3">
-          {loading && <p className="text-sm text-gray-500">Looking up...</p>}
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {loading && <p className="text-sm text-text-secondary">Looking up...</p>}
+          {error && <p className="text-sm text-error">{error}</p>}
           {entry && !loading && (
             <div className="space-y-3">
               <div className="flex items-start justify-between">
                 <div>
                   <div className="text-lg font-bold">{entry.word}</div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-text-secondary">
                     {entry.ipa && `${entry.ipa} · `}{entry.part_of_speech}
                     {entry.article && ` · ${entry.article}`}
                   </div>
                   {entry.lemma && (
-                    <div className="text-xs text-gray-400 mt-1">
+                    <div className="text-xs text-text-secondary mt-1">
                       Lemma: <em>{entry.lemma}</em>
                     </div>
                   )}
@@ -110,8 +110,8 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
                   }}
                   className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-colors ${
                     savedWords.includes(entry.word)
-                      ? "bg-green-50 text-green-600 border-green-200"
-                      : "text-gray-400 border-gray-200 hover:border-blue-300 hover:text-blue-500"
+                      ? "bg-success-subtle text-success border-success"
+                      : "text-text-secondary border-border hover:border-accent hover:text-accent"
                   }`}
                   aria-label={savedWords.includes(entry.word) ? "Saved" : "Save to vocab"}
                 >
@@ -128,40 +128,40 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
               </div>
 
               <div>
-                <div className="text-sm font-medium text-gray-700">English</div>
+                <div className="text-sm font-medium text-text-primary">English</div>
                 <div className="text-sm">{entry.english_translations.join(", ")}</div>
               </div>
 
               {entry.german_definition && (
                 <div>
-                  <div className="text-sm font-medium text-gray-700">Definition</div>
+                  <div className="text-sm font-medium text-text-primary">Definition</div>
                   <div className="text-sm">{entry.german_definition}</div>
                 </div>
               )}
 
               {entry.grammar_notes && (
-                <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                <div className="text-xs text-gray-500 bg-bg-main p-2 rounded">
                   {entry.grammar_notes}
                 </div>
               )}
 
               {entry.conjugation && (
                 <div>
-                  <div className="text-sm font-medium text-gray-700">Conjugation</div>
-                  <div className="text-xs text-gray-600">{entry.conjugation}</div>
+                  <div className="text-sm font-medium text-text-primary">Conjugation</div>
+                  <div className="text-xs text-text-secondary">{entry.conjugation}</div>
                 </div>
               )}
 
               {entry.plural && (
                 <div>
-                  <div className="text-sm font-medium text-gray-700">Plural</div>
-                  <div className="text-xs text-gray-600">{entry.plural}</div>
+                  <div className="text-sm font-medium text-text-primary">Plural</div>
+                  <div className="text-xs text-text-secondary">{entry.plural}</div>
                 </div>
               )}
 
               {entry.examples.length > 0 && (
                 <div>
-                  <div className="text-sm font-medium text-gray-700">Examples</div>
+                  <div className="text-sm font-medium text-text-primary">Examples</div>
                   {entry.examples.map((ex, i) => (
                     <div key={i} className="mt-1 text-sm">
                       <p className="text-gray-800">{ex.de}</p>
@@ -173,10 +173,10 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
 
               {entry.related_words.length > 0 && (
                 <div>
-                  <div className="text-sm font-medium text-gray-700">Related</div>
+                  <div className="text-sm font-medium text-text-primary">Related</div>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {entry.related_words.map(w => (
-                      <span key={w} className="px-2 py-0.5 bg-gray-100 rounded text-xs">{w}</span>
+                      <span key={w} className="px-2 py-0.5 bg-bg-main rounded text-xs">{w}</span>
                     ))}
                   </div>
                 </div>

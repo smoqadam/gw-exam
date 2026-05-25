@@ -23,10 +23,10 @@ export default function AudioPlayer({ src }: Props) {
   }
 
   return (
-    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+    <div className="flex items-center gap-4 p-4 bg-nav-bg rounded-xl">
       <button
         onClick={toggle}
-        className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors flex-shrink-0"
+        className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center hover:bg-accent-hover transition-colors flex-shrink-0"
         aria-label={playing ? "Pause" : "Play"}
       >
         {playing ? (
@@ -39,13 +39,13 @@ export default function AudioPlayer({ src }: Props) {
           </svg>
         )}
       </button>
-      <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+      <div className="flex-1 h-[4px] bg-white/15 rounded-full overflow-hidden">
         <div
-          className="h-full bg-blue-500 rounded-full transition-all"
+          className="h-full bg-accent rounded-full transition-all"
           style={{ width: duration ? `${(currentTime / duration) * 100}%` : "0%" }}
         />
       </div>
-      <span className="text-xs text-gray-500 w-16 text-right tabular-nums">
+      <span className="text-xs text-white/60 w-20 text-right tabular-nums">
         {Math.floor(currentTime / 60)}:{String(Math.floor(currentTime % 60)).padStart(2, "0")} / {Math.floor(duration / 60)}:{String(Math.floor(duration % 60)).padStart(2, "0")}
       </span>
       <audio

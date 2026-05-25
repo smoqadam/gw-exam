@@ -16,7 +16,7 @@ export default function ClickableWord({ word }: { word: string }) {
   return (
     <span
       onClick={() => openDictionary(stripped)}
-      className="cursor-pointer hover:text-blue-600 hover:underline decoration-dotted underline-offset-2 transition-colors"
+      className="cursor-pointer hover:text-accent hover:underline decoration-dotted underline-offset-2 transition-colors"
     >
       {word}
     </span>
