@@ -6,7 +6,8 @@ const GERMAN_REGEX = /^[A-Za-zÄÖÜäöüß-]+$/
 
 export default function ClickableWord({ word }: { word: string }) {
   const { openDictionary } = useDictionary()
-  const isGerman = GERMAN_REGEX.test(word) && word.length > 1
+  const stripped = word.replace(/^[.,!?;:()"'«»]+|[.,!?;:()"'«»]+$/g, "")
+  const isGerman = GERMAN_REGEX.test(stripped) && stripped.length > 1
 
   if (!isGerman) {
     return <span>{word}</span>
@@ -14,7 +15,7 @@ export default function ClickableWord({ word }: { word: string }) {
 
   return (
     <span
-      onClick={() => openDictionary(word)}
+      onClick={() => openDictionary(stripped)}
       className="cursor-pointer hover:text-blue-600 hover:underline decoration-dotted underline-offset-2 transition-colors"
     >
       {word}

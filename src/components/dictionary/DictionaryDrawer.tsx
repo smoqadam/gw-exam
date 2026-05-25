@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { lookupWord, type DictionaryEntry } from "@/lib/dictionary"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface Props {
   isOpen: boolean
@@ -14,6 +15,8 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
   const [entry, setEntry] = useState<DictionaryEntry | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [savedWords, setSavedWords] = useLocalStorage<string[]>("saved_vocab", [])
+  const [wordEntries, setWordEntries] = useLocalStorage<Record<string, DictionaryEntry>>("vocab_entries", {})
 
   useEffect(() => {
     setQuery(initialWord)
@@ -152,6 +155,26 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
                   </div>
                 </div>
               )}
+
+              <button
+                onClick={() => {
+                  if (!savedWords.includes(entry.word)) {
+                    setSavedWords([...savedWords, entry.word])
+                    setWordEntries({ ...wordEntries, [entry.word]: entry })
+                  }
+                }}
+                disabled={savedWords.includes(entry.word)}
+                className={`w-full py-2 rounded-lg text-sm flex items-center justify-center gap-2 ${
+                  savedWords.includes(entry.word)
+                    ? "bg-green-50 text-green-600 border border-green-200"
+                    : "bg-blue-500 text-white hover:bg-blue-600"
+                }`}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+                {savedWords.includes(entry.word) ? "Saved to vocab" : "Save to my vocab"}
+              </button>
             </div>
           )}
         </div>
