@@ -140,7 +140,7 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
               )}
 
               {entry.grammar_notes && (
-                <div className="text-xs text-gray-500 bg-bg-main p-2 rounded">
+                <div className="text-xs text-text-secondary bg-bg-main p-2 rounded">
                   {entry.grammar_notes}
                 </div>
               )}
@@ -164,8 +164,8 @@ export default function DictionaryDrawer({ isOpen, onClose, initialWord }: Props
                   <div className="text-sm font-medium text-text-primary">Examples</div>
                   {entry.examples.map((ex, i) => (
                     <div key={i} className="mt-1 text-sm">
-                      <p className="text-gray-800">{ex.de}</p>
-                      <p className="text-gray-500 text-xs">{ex.en}</p>
+                      <p className="text-text-primary">{ex.de}</p>
+                      <p className="text-text-secondary text-xs">{ex.en}</p>
                     </div>
                   ))}
                 </div>

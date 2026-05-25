@@ -45,7 +45,7 @@ export default function VocabPage() {
       <div className="max-w-lg mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-xl font-bold" style={{ fontFamily: "var(--font-serif, serif)" }}>Flashcard Drill</h1>
-          <button onClick={() => { setFlashcard(false); setRevealed(false) }} className="text-sm text-text-secondary hover:text-gray-700">
+          <button onClick={() => { setFlashcard(false); setRevealed(false) }} className="text-sm text-text-secondary hover:text-text-primary">
             Back to list
           </button>
         </div>
@@ -60,10 +60,10 @@ export default function VocabPage() {
           {revealed && (
             <div className="space-y-3 mt-4 pt-4 border-t w-full">
               <div className="text-xl">{current.english_translations.join(" · ")}</div>
-              {current.german_definition && <div className="text-sm text-gray-600">{current.german_definition}</div>}
+              {current.german_definition && <div className="text-sm text-text-secondary">{current.german_definition}</div>}
               {current.examples.length > 0 && (
                 <div className="text-sm text-left">
-                  <p className="text-gray-800">{current.examples[0].de}</p>
+                  <p className="text-text-primary">{current.examples[0].de}</p>
                   <p className="text-text-secondary text-xs">{current.examples[0].en}</p>
                 </div>
               )}
@@ -146,7 +146,7 @@ export default function VocabPage() {
                   <span className="font-semibold">{e.word}</span>
                   <span className="text-xs text-text-secondary">{e.part_of_speech}</span>
                 </div>
-                <div className="text-sm text-gray-600 truncate">{e.english_translations.join(", ")}</div>
+                <div className="text-sm text-text-secondary truncate">{e.english_translations.join(", ")}</div>
               </div>
               <button onClick={() => removeWord(e.word)} className="text-border hover:text-error transition-colors">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

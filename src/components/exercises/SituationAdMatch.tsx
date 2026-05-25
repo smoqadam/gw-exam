@@ -65,7 +65,7 @@ export default function SituationAdMatch({ data, examId, sectionKey }: Props) {
               <div key={a.id} className={`border rounded-lg p-3 text-sm transition-colors ${isAssigned ? "border-accent bg-accent-subtle" : ""}`}>
                 <div className="font-semibold text-xs text-text-secondary mb-1">{a.id}</div>
                 <div className="font-medium">{renderTextWithClicks(a.title)}</div>
-                <p className="text-gray-600 text-xs mt-1">{renderTextWithClicks(a.content)}</p>
+                <p className="text-text-secondary text-xs mt-1">{renderTextWithClicks(a.content)}</p>
               </div>
             )
           })}
