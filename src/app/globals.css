@@ -19,8 +19,8 @@
 
 @layer base {
   body {
-    background-color: #F5F5F0;
-    color: #2D3436;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
