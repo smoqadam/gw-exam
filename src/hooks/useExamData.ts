@@ -17,7 +17,7 @@ export function useExamData(examId: string) {
       return
     }
 
-    fetch(`/api/data/${examId}`)
+    fetch(`/data/${examId}.json`)
       .then(res => {
         if (!res.ok) throw new Error("Exam not found")
         return res.json()
