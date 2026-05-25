@@ -28,8 +28,8 @@ export default function TextMCQ({ data, examId, sectionKey }: Props) {
 
   return (
     <div className="space-y-6">
-      <details className="border rounded-lg" open>
-        <summary className="font-semibold p-4 cursor-pointer hover:bg-gray-50">{data.title}</summary>
+      <details className="border border-border rounded-lg" open>
+        <summary className="font-semibold p-4 cursor-pointer hover:bg-bg-main">{data.title}</summary>
         <div className="px-4 pb-4 text-sm leading-relaxed max-h-80 overflow-y-auto">
           {renderTextWithClicks(data.content)}
         </div>
@@ -45,10 +45,10 @@ export default function TextMCQ({ data, examId, sectionKey }: Props) {
                 const isCorrect = checked && q.answer === key
                 const isWrong = checked && isSelected && !isCorrect
                 let optClass = "flex items-center gap-3 p-3 rounded-lg border text-sm cursor-pointer transition-colors "
-                if (isSelected && !checked) optClass += "border-blue-500 bg-blue-50"
-                else if (isCorrect) optClass += "border-green-500 bg-green-50"
-                else if (isWrong) optClass += "border-red-500 bg-red-50"
-                else optClass += "border-gray-200 hover:border-gray-300"
+                if (isSelected && !checked) optClass += "border-accent bg-accent-subtle"
+                else if (isCorrect) optClass += "border-success bg-success-subtle"
+                else if (isWrong) optClass += "border-error bg-error-subtle"
+                else optClass += "border-border hover:border-text-secondary"
                 return (
                   <div key={key} onClick={() => select(q.id, key)} className={optClass}>
                     <span className="w-6 h-6 rounded-full border border-current flex items-center justify-center text-xs font-medium shrink-0">
@@ -65,11 +65,11 @@ export default function TextMCQ({ data, examId, sectionKey }: Props) {
       </div>
 
       {!checked ? (
-        <button onClick={check} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm">
+        <button onClick={check} className="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent-hover text-sm">
           Check answers
         </button>
       ) : (
-        <div className="p-4 rounded-lg bg-gray-50 text-sm">
+        <div className="p-4 rounded-lg bg-bg-main text-sm">
           Score: {score} / {data.questions.length}
         </div>
       )}

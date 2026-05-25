@@ -30,7 +30,7 @@ export default function TrueFalseAudio({ data, examId, sectionKey, audioSrc }: P
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-sm text-gray-500 mb-3">{data.topic} · {data.play_count}x play</p>
+        <p className="text-sm text-text-secondary mb-3">{data.topic} · {data.play_count}x play</p>
         <AudioPlayer src={audioSrc} />
       </div>
 
@@ -43,23 +43,23 @@ export default function TrueFalseAudio({ data, examId, sectionKey, audioSrc }: P
             <div
               key={s.id}
               className={`border rounded-lg p-4 transition-colors ${
-                isCorrect ? "border-green-300 bg-green-50" :
-                isWrong ? "border-red-300 bg-red-50" :
-                "border-gray-200"
+                isCorrect ? "border-success bg-success-subtle" :
+                isWrong ? "border-error bg-error-subtle" :
+                "border-border"
               }`}
             >
               <div className="flex items-start gap-3">
-                <span className="font-semibold text-gray-400 shrink-0 text-sm">{s.id}.</span>
+                <span className="font-semibold text-text-secondary shrink-0 text-sm">{s.id}.</span>
                 <p className="flex-1 text-sm">{s.text}</p>
                 <div className="flex gap-2 shrink-0">
                   {["richtig", "falsch"].map(label => {
                     const value = label === "richtig"
                     const isActive = selected === value
                     let btnClass = "px-4 py-1.5 rounded-lg text-sm font-medium border transition-colors "
-                    if (checked && isActive && isCorrect) btnClass += "border-green-500 bg-green-100 text-green-700"
-                    else if (checked && isActive && isWrong) btnClass += "border-red-500 bg-red-100 text-red-700"
-                    else if (isActive) btnClass += "border-blue-500 bg-blue-50 text-blue-700"
-                    else btnClass += "border-gray-200 text-gray-500 hover:border-gray-300"
+                    if (checked && isActive && isCorrect) btnClass += "border-success bg-success-subtle text-success"
+                    else if (checked && isActive && isWrong) btnClass += "border-error bg-error-subtle text-error"
+                    else if (isActive) btnClass += "border-accent bg-accent-subtle text-accent"
+                    else btnClass += "border-border text-text-secondary hover:border-text-secondary"
                     return (
                       <button key={label} onClick={() => select(s.id, value)} className={btnClass}>
                         {label.charAt(0).toUpperCase() + label.slice(1)}
@@ -75,11 +75,11 @@ export default function TrueFalseAudio({ data, examId, sectionKey, audioSrc }: P
       </div>
 
       {!checked ? (
-        <button onClick={check} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm">
+        <button onClick={check} className="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent-hover text-sm">
           Check answers
         </button>
       ) : (
-        <div className="p-4 rounded-lg bg-gray-50 text-sm">
+        <div className="p-4 rounded-lg bg-bg-main text-sm">
           Score: {score} / {data.statements.length}
         </div>
       )}

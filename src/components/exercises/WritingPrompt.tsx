@@ -26,9 +26,9 @@ export default function WritingPrompt({ data, examId, sectionKey }: Props) {
 
   return (
     <div className="space-y-6">
-      <div className="border rounded-lg p-4 bg-gray-50">
+      <div className="border border-border rounded-lg p-4 bg-bg-main">
         <div className="flex items-center gap-2 mb-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-text-secondary">
             <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
           </svg>
           <span className="font-semibold text-sm">Incoming letter from {data.incoming_letter.sender}</span>
@@ -37,16 +37,16 @@ export default function WritingPrompt({ data, examId, sectionKey }: Props) {
       </div>
 
       <div>
-        <h3 className="font-semibold text-sm text-gray-500 uppercase tracking-wide mb-2">Required points</h3>
+        <h3 className="font-semibold text-sm text-text-secondary uppercase tracking-wider mb-2">Required points</h3>
         <div className="flex flex-wrap gap-2">
           {data.required_points.map(point => (
             <button
               key={point}
               onClick={() => togglePoint(point)}
               className={`px-3 py-1.5 rounded-lg text-sm border transition-colors flex items-center gap-2 ${
-                checkedPoints.includes(point)
-                  ? "border-green-400 bg-green-50 text-green-700"
-                  : "border-gray-200 text-gray-600 hover:border-gray-300"
+                  checkedPoints.includes(point)
+                    ? "border-success bg-success-subtle text-success"
+                    : "border-border text-text-secondary hover:border-text-secondary"
               }`}
             >
               {checkedPoints.includes(point) && (
@@ -62,18 +62,18 @@ export default function WritingPrompt({ data, examId, sectionKey }: Props) {
 
       <div>
         <textarea
-          className="w-full border rounded-lg p-4 text-sm resize-y leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[300px]"
+          className="w-full border border-border rounded-lg p-4 text-sm resize-y leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent min-h-[300px]"
           placeholder="Write your letter here..."
           value={draft}
           onChange={e => setDraft(e.target.value)}
         />
         <div className="flex justify-between items-center mt-2 text-sm">
-          <span className={wordCount >= data.min_words ? "text-green-600" : "text-gray-400"}>
+          <span className={wordCount >= data.min_words ? "text-green-600" : "text-text-secondary"}>
             {wordCount} words {wordCount < data.min_words ? `(min ${data.min_words})` : "✓ minimum met"}
           </span>
           <button
             onClick={() => setDraft("")}
-            className="text-gray-400 hover:text-gray-600 text-xs"
+            className="text-text-secondary hover:text-text-primary text-xs"
           >
             Clear draft
           </button>

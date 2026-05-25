@@ -50,10 +50,10 @@ export default function GapFillWordBank({ data, examId, sectionKey }: Props) {
       const isWrong = checked && assigned && assigned !== correct
       return (
         <span key={i} className={`inline-flex items-center mx-1 px-2 py-0.5 rounded border-2 text-sm font-medium ${
-          isCorrect ? "border-green-500 bg-green-50 text-green-700" :
-          isWrong ? "border-red-500 bg-red-50 text-red-700" :
-          assigned ? "border-blue-500 bg-blue-50 text-blue-700" :
-          "border-dashed border-gray-300 text-gray-400"
+          isCorrect ? "border-success bg-success-subtle text-success" :
+          isWrong ? "border-error bg-error-subtle text-error" :
+          assigned ? "border-accent bg-accent-subtle text-accent" :
+          "border-dashed border-border text-text-secondary"
         }`}>
           {assigned ? WORD_BANK_LABELS[assigned] ?? assigned : `[${gapId}]`}
         </span>
@@ -66,9 +66,9 @@ export default function GapFillWordBank({ data, examId, sectionKey }: Props) {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-gray-500 italic">{data.context}</p>
+      <p className="text-sm text-text-secondary italic">{data.context}</p>
 
-      <div className="flex flex-wrap gap-2 p-4 bg-gray-50 rounded-lg">
+      <div className="flex flex-wrap gap-2 p-4 bg-bg-main rounded-lg">
         {wordBankEntries.map(([key, word]) => {
           const isUsed = usedWords.has(key)
           return (
@@ -85,7 +85,7 @@ export default function GapFillWordBank({ data, examId, sectionKey }: Props) {
                 }
               }}
               className={`px-3 py-1 rounded text-sm font-mono transition-colors ${
-                isUsed ? "bg-blue-100 text-blue-700 border border-blue-300" : "bg-white border border-gray-200 hover:border-gray-300"
+                isUsed ? "bg-accent-subtle text-accent border border-accent" : "bg-surface border border-border hover:border-text-secondary"
               }`}
             >
               {word}
@@ -101,7 +101,7 @@ export default function GapFillWordBank({ data, examId, sectionKey }: Props) {
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         {GAP_IDS.map(gapId => (
           <div key={gapId} className="border rounded-lg p-3 text-center">
-            <div className="text-xs text-gray-400 mb-1">#{gapId}</div>
+            <div className="text-xs text-text-secondary mb-1">#{gapId}</div>
             <select
               className="w-full text-sm border rounded p-1"
               value={assignments[gapId] || ""}
@@ -122,11 +122,11 @@ export default function GapFillWordBank({ data, examId, sectionKey }: Props) {
       <NotesTextarea examId={examId} sectionKey={sectionKey} />
 
       {!checked ? (
-        <button onClick={check} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm">
+        <button onClick={check} className="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent-hover text-sm">
           Check answers
         </button>
       ) : (
-        <div className="p-4 rounded-lg bg-gray-50 text-sm">
+        <div className="p-4 rounded-lg bg-bg-main text-sm">
           Score: {score} / {GAP_IDS.length}
         </div>
       )}
