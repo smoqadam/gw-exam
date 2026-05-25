@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { DM_Sans, DM_Serif_Display } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./client-layout"
 
-const inter = Inter({ subsets: ["latin"] })
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] })
+const dmSerifDisplay = DM_Serif_Display({ subsets: ["latin"], weight: "400", variable: "--font-serif" })
 
 export const metadata: Metadata = {
   title: "Dexam2 — German B1 Prep",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
-      <body className={`${inter.className} bg-gray-50`}>
+      <body className={dmSans.className}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
