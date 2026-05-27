@@ -1,0 +1,11 @@
+{
+  "exams": [
+    {
+      "id": "exam_01",
+      "label": "Exam 01 — Mock Test",
+      "level": "B1",
+      "totalQuestions": 55,
+      "sections": 9
+    }
+  ]
+}

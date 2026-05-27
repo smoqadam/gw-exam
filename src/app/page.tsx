@@ -2,29 +2,22 @@
 
 import Link from "next/link"
 import { useLocalStorage } from "@/hooks/useLocalStorage"
-
-interface ExamMeta {
-  id: string
-  label: string
-  level: string
-  totalQuestions: number
-  sections: number
-}
-
-const EXAMS: ExamMeta[] = [
-  { id: "exam_01", label: "Exam 01 — Mock Test", level: "B1", totalQuestions: 55, sections: 9 },
-]
+import { useExamList } from "@/hooks/useExamList"
 
 export default function Home() {
   const [progress] = useLocalStorage<Record<string, unknown>>("exam_progress", {})
+  const { exams, loading, error } = useExamList()
 
   return (
     <div className="max-w-2xl">
       <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "var(--font-serif, serif)" }}>Exams</h1>
       <p className="text-text-secondary text-sm mb-6">Select an exam to start studying</p>
 
+      {loading && <p className="text-text-secondary text-sm">Loading exams...</p>}
+      {error && <p className="text-error text-sm">{error}</p>}
+
       <div className="space-y-4">
-        {EXAMS.map(exam => {
+        {exams?.map(exam => {
           const examProgress = progress[exam.id]
           const completed = examProgress ? Object.keys(examProgress as object).length : 0
           const pct = Math.round((completed / exam.sections) * 100)
@@ -32,7 +25,7 @@ export default function Home() {
           return (
             <Link
               key={exam.id}
-              href={`/exam/${exam.id}`}
+              href={`/exam?id=${exam.id}`}
               className="block border border-border rounded-xl p-6 hover:shadow-sm transition-all bg-surface"
             >
               <div className="flex items-start gap-4">

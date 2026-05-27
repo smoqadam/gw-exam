@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import type { ExamData } from "@/types/exam"
+import { examUrl } from "@/lib/config"
 
 const EXAM_CACHE = new Map<string, ExamData>()
 
@@ -17,7 +18,7 @@ export function useExamData(examId: string) {
       return
     }
 
-    fetch(`/data/${examId}.json`)
+    fetch(examUrl(examId))
       .then(res => {
         if (!res.ok) throw new Error("Exam not found")
         return res.json()

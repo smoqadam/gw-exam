@@ -1,17 +1,18 @@
 "use client"
 
+import { Suspense } from "react"
 import Link from "next/link"
-import { useParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { useExamData } from "@/hooks/useExamData"
 import { useProgress } from "@/hooks/useProgress"
 import { SECTION_CONFIG } from "@/lib/exam"
 
-export default function ExamPage() {
-  const params = useParams()
-  const examId = params.examId as string
+function ExamView() {
+  const examId = useSearchParams().get("id") ?? ""
   const { data, loading, error } = useExamData(examId)
   const { getSectionScore } = useProgress(examId)
 
+  if (!examId) return <p className="text-error text-sm">No exam selected.</p>
   if (loading) return <p className="text-text-secondary text-sm">Loading exam...</p>
   if (error) return <p className="text-error text-sm">{error}</p>
   if (!data) return null
@@ -43,7 +44,7 @@ export default function ExamPage() {
               return (
                 <Link
                   key={s.key}
-                  href={`/exam/${examId}/${s.key}`}
+                  href={`/exam/section?id=${examId}&section=${s.key}`}
                   className="flex items-center gap-3 p-4 rounded-xl border border-border bg-surface hover:shadow-sm transition-all"
                 >
                   <div className="flex-1 min-w-0">
@@ -65,5 +66,13 @@ export default function ExamPage() {
         </div>
       ))}
     </div>
+  )
+}
+
+export default function ExamPage() {
+  return (
+    <Suspense fallback={<p className="text-text-secondary text-sm">Loading exam...</p>}>
+      <ExamView />
+    </Suspense>
   )
 }
